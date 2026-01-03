@@ -3,24 +3,122 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --navy-blue: #2B4C7E;
+  --light-gray: #E8E8E8;
+  --off-white: #F5F5F5;
+  --dark-overlay: rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy-blue);
+  --color-light-gray: var(--light-gray);
+  --color-off-white: var(--off-white);
+
+  --font-family-din: "din-2014", sans-serif;
+  --font-family-helvetica: "helvetica-neue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom Tailwind utilities */
+@layer utilities {
+  .font-din {
+    font-family: "din-2014", sans-serif;
   }
+
+  .font-helvetica {
+    font-family: "helvetica-neue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .bg-navy {
+    background-color: #2B4C7E;
+  }
+
+  .text-navy {
+    color: #2B4C7E;
+  }
+
+  .border-navy {
+    border-color: #2B4C7E;
+  }
+
+  .bg-light-gray {
+    background-color: #E8E8E8;
+  }
+
+  .bg-off-white {
+    background-color: #F5F5F5;
+  }
+
+  .from-navy {
+    --tw-gradient-from: #2B4C7E;
+    --tw-gradient-to: rgb(43 76 126 / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .to-navy {
+    --tw-gradient-to: #2B4C7E;
+  }
+
+  .via-navy {
+    --tw-gradient-to: rgb(43 76 126 / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), #2B4C7E, var(--tw-gradient-to);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-helvetica);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-din);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Grid System - 12 columns, 40px margin, 20px gutter */
+/* Total width: 1440px */
+/* Content width: 1360px (1440 - 40*2) */
+/* Column width: 95px */
+/* Gutter: 20px */
+
+.custom-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .custom-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .grid-12 {
+    column-gap: 16px;
+  }
 }

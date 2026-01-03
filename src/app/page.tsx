@@ -1,65 +1,318 @@
-import Image from "next/image";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative h-screen">
+        {/* Background - Full width image - edge to edge */}
+        <div
+          className="absolute inset-0 bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/images/hero/HERO.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center'
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+        
+        {/* Content Container */}
+        <div className="relative z-10 h-full flex flex-col">
+          {/* Main Content - vertically centered */}
+          <div className="flex-1 flex items-center" style={{ padding: '0 40px' }}>
+            <div style={{ maxWidth: '620px' }}>
+              <h1 
+                style={{ 
+                  fontFamily: 'din-2014, sans-serif',
+                  fontSize: '64px',
+                  lineHeight: '0.9',
+                  fontWeight: 700,
+                  color: 'white',
+                  marginBottom: '20px',
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Soluciones marítimas<br />
+                y portuarias integrales
+              </h1>
+              <p 
+                style={{ 
+                  fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
+                  fontSize: '19px',
+                  color: 'rgba(255,255,255,0.9)',
+                  marginBottom: '32px',
+                }}
+              >
+                Especialistas en Comercio Exterior
+              </p>
+              
+              {/* Botones con padding correcto */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
+                <Link
+                  href="/contacto"
+                  style={{ 
+                    fontFamily: 'din-2014, sans-serif',
+                    backgroundColor: 'white',
+                    color: '#2B4C7E',
+                    padding: '14px 28px',
+                    fontWeight: 600,
+                    fontSize: '16px',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                  }}
+                >
+                  Consultá tu operación
+                </Link>
+                <Link
+                  href="/servicios"
+                  style={{ 
+                    fontFamily: 'din-2014, sans-serif',
+                    backgroundColor: 'transparent',
+                    color: 'white',
+                    padding: '14px 28px',
+                    fontWeight: 600,
+                    fontSize: '16px',
+                    borderRadius: '4px',
+                    border: '2px solid white',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                  }}
+                >
+                  Nuestros servicios
+                </Link>
+              </div>
+              
+              <p 
+                style={{ 
+                  fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
+                  fontSize: '13px',
+                  color: 'rgba(255,255,255,0.7)',
+                }}
+              >
+                Respuesta rápida · Atención personalizada · Sin compromiso
+              </p>
+            </div>
+          </div>
+
+          {/* Stats Bar - positioned above bottom */}
+          <div style={{ position: 'absolute', bottom: '120px', left: '40px', right: '40px', zIndex: 10 }}>
+            <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '16px' }}>
+              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
+                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>30+</div>
+                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Años en Puerto Necochea</div>
+              </div>
+              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
+                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>95%</div>
+                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Operaciones sin demora</div>
+              </div>
+              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
+                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>600+</div>
+                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Buques anuales</div>
+              </div>
+              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
+                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>24/7</div>
+                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Respuesta inmediata</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div style={{ position: 'absolute', bottom: '24px', left: '40px', zIndex: 10 }}>
+            <svg
+              style={{ width: '28px', height: '28px', color: 'white' }}
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section style={{ padding: '80px 40px', backgroundColor: '#F5F5F5' }}>
+        <div style={{ marginBottom: '48px' }}>
+          <h2 
+            style={{ 
+              fontFamily: 'din-2014, sans-serif',
+              fontSize: '99px',
+              lineHeight: 0.95,
+              fontWeight: 700,
+              color: '#2B4C7E',
+              marginBottom: '16px',
+              letterSpacing: '-0.03em',
+            }}
+          >
+            Una forma más simple de operar
+          </h2>
+          <p 
+            style={{ 
+              fontFamily: 'din-2014, sans-serif',
+              fontSize: '19px',
+              color: '#2B4C7E',
+            }}
+          >
+            Simplificamos tus operaciones de importación y exportación
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px', alignItems: 'stretch' }}>
+          {/* Feature Card 1 */}
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '12px', 
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+            border: '1px solid #E5E5E5',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+              <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
+                <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 8v24M20 8l-4 4M20 8l4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="20" cy="6" r="2" fill="currentColor"/>
+                  <path d="M8 20c0 6.627 5.373 12 12 12s12-5.373 12-12" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
+                32 años de experiencia
+              </h3>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
+                Operando desde 1993, tres décadas gestionando operaciones exitosas
+              </p>
+            </div>
+            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_1.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          </div>
+
+          {/* Feature Card 2 */}
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '12px', 
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+            border: '1px solid #E5E5E5',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+              <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
+                <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 40 40" fill="currentColor">
+                  <path d="M20 4C13.373 4 8 9.373 8 16c0 8 12 20 12 20s12-12 12-20c0-6.627-5.373-12-12-12zm0 16c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"/>
+                </svg>
+              </div>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
+                Presencia en 7 ciudades
+              </h3>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
+                Necochea, Buenos Aires, Bahía Blanca, Mar del Plata, Rosario, San Lorenzo y Paso de los Libres
+              </p>
+            </div>
+            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          </div>
+
+          {/* Feature Card 3 */}
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '12px', 
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+            border: '1px solid #E5E5E5',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+              <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
+                <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
+                </svg>
+              </div>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
+                Servicio integral
+              </h3>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
+                De la agencia marítima al despacho final. Coordinamos toda tu operación.
+              </p>
+            </div>
+            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_3.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Services Section */}
+      <section style={{ padding: '80px 40px', backgroundColor: 'white' }}>
+        <h2 
+          style={{ 
+            fontFamily: 'din-2014, sans-serif',
+            fontSize: 'clamp(33px, 4vw, 48px)',
+            lineHeight: 1,
+            fontWeight: 700,
+            color: '#2B4C7E',
+            marginBottom: '40px',
+            letterSpacing: '-0.03em',
+          }}
+        >
+          Nuestros Servicios Principales
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '24px' }}>
+          {/* Service 1 */}
+          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '380px' }}>
+            <div
+              className="group-hover:scale-105 transition-transform duration-700"
+              style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                backgroundImage: 'url(/images/servicios-01.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
+            <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
+                ESPECIALISTAS EN
+              </p>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
+                Agencia marítima
+              </h3>
+            </div>
+          </Link>
+
+          {/* Service 2 */}
+          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '380px' }}>
+            <div
+              className="group-hover:scale-105 transition-transform duration-700"
+              style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                backgroundImage: 'url(/images/servicios-02.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
+            <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
+                ESPECIALISTAS EN
+              </p>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
+                Despacho de aduana
+              </h3>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }
