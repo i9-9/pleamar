@@ -87,33 +87,13 @@ export default function Home() {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
                 <Link
                   href="/contacto"
-                  style={{ 
-                    fontFamily: 'din-2014, sans-serif',
-                    backgroundColor: 'white',
-                    color: '#2B4C7E',
-                    padding: '14px 28px',
-                    fontWeight: 600,
-                    fontSize: '16px',
-                    borderRadius: '4px',
-                    textDecoration: 'none',
-                    display: 'inline-block',
-                  }}
+                  className="btn btn-primary"
                 >
                   Consultá tu operación
                 </Link>
                 <Link
                   href="/servicios"
-                  style={{ 
-                    fontFamily: 'din-2014, sans-serif',
-                    backgroundColor: '#2B4C7E',
-                    color: 'white',
-                    padding: '14px 28px',
-                    fontWeight: 600,
-                    fontSize: '16px',
-                    borderRadius: '4px',
-                    textDecoration: 'none',
-                    display: 'inline-block',
-                  }}
+                  className="btn btn-secondary"
                 >
                   Nuestros servicios
                 </Link>
@@ -198,7 +178,7 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+            <div style={{ padding: '32px 28px 24px', height: '220px' }}>
               <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
                 <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M20 8v24M20 8l-4 4M20 8l4 4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -213,7 +193,7 @@ export default function Home() {
                 Operando desde 1993, tres décadas gestionando operaciones exitosas
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_1.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/v2/anos_experiencia.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 2 */}
@@ -226,7 +206,7 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+            <div style={{ padding: '32px 28px 24px', height: '220px' }}>
               <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
                 <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 40 40" fill="currentColor">
                   <path d="M20 4C13.373 4 8 9.373 8 16c0 8 12 20 12 20s12-12 12-20c0-6.627-5.373-12-12-12zm0 16c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"/>
@@ -239,7 +219,7 @@ export default function Home() {
                 Necochea, Quequén, Buenos Aires, Bahía Blanca, Mar del Plata, Paso de los Libres, Rosario, San Lorenzo, Tres Arroyos. Red Nacional para tu comodidad
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 3 */}
@@ -252,7 +232,7 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-            <div style={{ padding: '32px 28px 24px', height: '180px' }}>
+            <div style={{ padding: '32px 28px 24px', height: '220px' }}>
               <div style={{ color: '#2B4C7E', marginBottom: '16px' }}>
                 <svg style={{ width: '32px', height: '32px' }} viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z"/>
@@ -265,7 +245,7 @@ export default function Home() {
                 De la agencia marítima al despacho final. Coordinamos toda tu operación.
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_3.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/v2/integral.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
         </div>
       </section>
