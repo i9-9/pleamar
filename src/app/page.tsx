@@ -1,6 +1,39 @@
+'use client';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import AnimatedCounter from '@/components/AnimatedCounter';
+import { useEffect, useState } from 'react';
+
+// Animated text component - letter by letter reveal
+function AnimatedTitle({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <>
+      {text.split('').map((char, index) => (
+        <span
+          key={index}
+          style={{
+            display: 'inline-block',
+            opacity: isVisible ? 1 : 0,
+            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
+            transition: `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.025}s, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.025}s`,
+            whiteSpace: char === ' ' ? 'pre' : 'normal',
+          }}
+        >
+          {char}
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function Home() {
   return (
@@ -13,7 +46,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-no-repeat"
           style={{
-            backgroundImage: 'url(/images/hero/HERO.jpg)',
+            backgroundImage: 'url(/images/v2/hero_2.jpeg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center center'
           }}
@@ -28,15 +61,16 @@ export default function Home() {
                 style={{ 
                   fontFamily: 'din-2014, sans-serif',
                   fontSize: '64px',
-                  lineHeight: '0.9',
+                  lineHeight: '0.85',
                   fontWeight: 700,
                   color: 'white',
                   marginBottom: '20px',
                   letterSpacing: '-0.03em',
                 }}
               >
-                Soluciones marítimas<br />
-                y portuarias integrales
+                <AnimatedTitle text="Soluciones marítimas" delay={200} />
+                <br />
+                <AnimatedTitle text="y portuarias integrales" delay={400} />
               </h1>
               <p 
                 style={{ 
@@ -71,13 +105,12 @@ export default function Home() {
                   href="/servicios"
                   style={{ 
                     fontFamily: 'din-2014, sans-serif',
-                    backgroundColor: 'transparent',
+                    backgroundColor: '#2B4C7E',
                     color: 'white',
                     padding: '14px 28px',
                     fontWeight: 600,
                     fontSize: '16px',
                     borderRadius: '4px',
-                    border: '2px solid white',
                     textDecoration: 'none',
                     display: 'inline-block',
                   }}
@@ -93,7 +126,7 @@ export default function Home() {
                   color: 'rgba(255,255,255,0.7)',
                 }}
               >
-                Respuesta rápida · Atención personalizada · Sin compromiso
+                Respuesta rápida · Atención personalizada
               </p>
             </div>
           </div>
@@ -101,22 +134,10 @@ export default function Home() {
           {/* Stats Bar - positioned above bottom */}
           <div style={{ position: 'absolute', bottom: '120px', left: '40px', right: '40px', zIndex: 10 }}>
             <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '16px' }}>
-              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
-                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>30+</div>
-                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Años en Puerto Necochea</div>
-              </div>
-              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
-                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>95%</div>
-                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Operaciones sin demora</div>
-              </div>
-              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
-                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>600+</div>
-                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Buques anuales</div>
-              </div>
-              <div style={{ backgroundColor: 'rgba(30, 58, 92, 0.85)', padding: '20px 24px', borderTop: '3px solid #C9A227', backdropFilter: 'blur(8px)' }}>
-                <div style={{ fontFamily: 'din-2014, sans-serif', fontSize: '40px', fontWeight: 700, color: 'white', lineHeight: 1 }}>24/7</div>
-                <div style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.8)', marginTop: '4px' }}>Respuesta inmediata</div>
-              </div>
+              <AnimatedCounter end={32} suffix="+" label="Años de experiencia" duration={2000} />
+              <AnimatedCounter end={95} suffix="%" label="Operaciones sin demora" duration={2200} />
+              <AnimatedCounter end={600} suffix="+" label="Buques anuales" duration={2400} />
+              <AnimatedCounter end={24} suffix="/7" label="Respuesta inmediata" duration={1800} />
             </div>
           </div>
 
@@ -147,7 +168,7 @@ export default function Home() {
               lineHeight: 0.95,
               fontWeight: 700,
               color: '#2B4C7E',
-              marginBottom: '16px',
+              marginBottom: '4px',
               letterSpacing: '-0.03em',
             }}
           >
@@ -156,8 +177,10 @@ export default function Home() {
           <p 
             style={{ 
               fontFamily: 'din-2014, sans-serif',
-              fontSize: '19px',
+              fontSize: '32px',
+              fontWeight: 700,
               color: '#2B4C7E',
+              lineHeight: 1.1,
             }}
           >
             Simplificamos tus operaciones de importación y exportación
@@ -190,7 +213,7 @@ export default function Home() {
                 Operando desde 1993, tres décadas gestionando operaciones exitosas
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_1.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_1.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 2 */}
@@ -210,13 +233,13 @@ export default function Home() {
                 </svg>
               </div>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
-                Presencia en 7 ciudades
+                Presencia diversas localidades
               </h3>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
-                Necochea, Buenos Aires, Bahía Blanca, Mar del Plata, Rosario, San Lorenzo y Paso de los Libres
+                Necochea, Quequén, Buenos Aires, Bahía Blanca, Mar del Plata, Paso de los Libres, Rosario, San Lorenzo, Tres Arroyos. Red Nacional para tu comodidad
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 3 */}
@@ -242,7 +265,7 @@ export default function Home() {
                 De la agencia marítima al despacho final. Coordinamos toda tu operación.
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '200px', backgroundImage: 'url(/images/hero/CARD_3.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '340px', backgroundImage: 'url(/images/hero/CARD_3.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
         </div>
       </section>
@@ -263,15 +286,15 @@ export default function Home() {
           Nuestros Servicios Principales
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '24px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px' }}>
           {/* Service 1 */}
-          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '380px' }}>
+          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
             <div
               className="group-hover:scale-105 transition-transform duration-700"
               style={{ 
                 position: 'absolute', 
                 inset: 0, 
-                backgroundImage: 'url(/images/servicios-01.jpg)',
+                backgroundImage: 'url(/images/v2/agencia_maritima.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -288,13 +311,13 @@ export default function Home() {
           </Link>
 
           {/* Service 2 */}
-          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '380px' }}>
+          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
             <div
               className="group-hover:scale-105 transition-transform duration-700"
               style={{ 
                 position: 'absolute', 
                 inset: 0, 
-                backgroundImage: 'url(/images/servicios-02.jpg)',
+                backgroundImage: 'url(/images/v2/despacho.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -306,6 +329,29 @@ export default function Home() {
               </p>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
                 Despacho de aduana
+              </h3>
+            </div>
+          </Link>
+
+          {/* Service 3 */}
+          <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
+            <div
+              className="group-hover:scale-105 transition-transform duration-700"
+              style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                backgroundImage: 'url(/images/v2/estibaje.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
+            <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
+              <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
+                ESPECIALISTAS EN
+              </p>
+              <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
+                Estibaje
               </h3>
             </div>
           </Link>

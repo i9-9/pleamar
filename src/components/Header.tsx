@@ -48,12 +48,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-10 h-full">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
-                className={`transition-colors hover:text-[#2B4C7E] ${
+                className={`relative h-full flex items-center transition-colors hover:text-[#2B4C7E] ${
                   pathname === item.path
                     ? 'text-[#2B4C7E] font-medium'
                     : 'text-gray-600'
@@ -61,6 +61,18 @@ export default function Header() {
                 style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px' }}
               >
                 {item.name}
+                {pathname === item.path && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '3px',
+                      backgroundColor: '#A83B17',
+                    }}
+                  />
+                )}
               </Link>
             ))}
           </div>
@@ -96,7 +108,7 @@ export default function Header() {
               <Link
                 key={item.path}
                 href={item.path}
-                className={`block py-2.5 transition-colors hover:text-[#2B4C7E] ${
+                className={`relative block py-2.5 transition-colors hover:text-[#2B4C7E] ${
                   pathname === item.path
                     ? 'text-[#2B4C7E] font-medium'
                     : 'text-gray-600'
@@ -105,6 +117,18 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
+                {pathname === item.path && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      left: 0,
+                      width: '40px',
+                      height: '2px',
+                      backgroundColor: '#A83B17',
+                    }}
+                  />
+                )}
               </Link>
             ))}
           </div>

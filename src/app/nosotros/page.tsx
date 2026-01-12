@@ -37,7 +37,7 @@ export default function Nosotros() {
                   Somos una agencia marítima integral que gestiona cada etapa de tu operación: desde el arribo del buque hasta la entrega final de la mercadería.
                 </p>
                 <p className="text-base leading-relaxed">
-                  Con más de 30 años de experiencia, trabajamos con pequeñas, medianas y grandes empresas que buscan agilidad, confianza y soluciones personalizadas.
+                  Con más de 32 años de experiencia, trabajamos con pequeñas, medianas y grandes empresas que buscan agilidad, confianza y soluciones personalizadas.
                 </p>
               </div>
 
