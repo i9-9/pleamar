@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import Image from 'next/image';
+import CTAButtons from '@/components/CTAButtons';
 
 export default function Servicios() {
   return (
@@ -10,18 +11,18 @@ export default function Servicios() {
       {/* Main Content - Split Layout */}
       <section className="min-h-screen flex flex-col lg:flex-row">
         {/* Left Side - Content */}
-        <div className="lg:w-1/2 bg-white flex items-center order-2 lg:order-1">
-          <div className="w-full px-[40px] py-16 lg:py-0 pt-24 lg:pt-0">
-            <div className="max-w-xl">
-              <h1 
-                className="text-[32px] lg:text-[44px] leading-[1.15] font-bold mb-12 italic"
+        <div className="lg:w-1/2 bg-white flex items-center order-2 lg:order-1 pt-24">
+          <div className="w-full py-20 lg:py-0">
+            <div className="max-w-xl mx-auto px-5 md:px-10 lg:px-0 lg:ml-[72px]">
+              <h1
+                className="text-[32px] lg:text-[44px] leading-[0.95] font-bold mb-12"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
                 Acompañamos su operación<br />
                 de punta a punta
               </h1>
 
-              <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                 {/* Gestión Aduanera */}
                 <div>
                   <h2 
@@ -30,9 +31,9 @@ export default function Servicios() {
                   >
                     Gestión Aduanera
                   </h2>
-                  <ul 
-                    className="space-y-2 text-gray-600"
-                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                  <ul
+                    className="space-y-1"
+                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
                     <li className="flex items-center gap-2">
                       <span className="text-[#2B4C7E]">•</span>
@@ -57,9 +58,9 @@ export default function Servicios() {
                   >
                     Operaciones Logísticas
                   </h2>
-                  <ul 
-                    className="space-y-2 text-gray-600"
-                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                  <ul
+                    className="space-y-1"
+                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
                     <li className="flex items-center gap-2">
                       <span className="text-[#2B4C7E]">•</span>
@@ -84,9 +85,9 @@ export default function Servicios() {
                   >
                     Gestión Documental
                   </h2>
-                  <ul 
-                    className="space-y-2 text-gray-600"
-                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                  <ul
+                    className="space-y-1"
+                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
                     <li className="flex items-center gap-2">
                       <span className="text-[#2B4C7E]">•</span>
@@ -107,9 +108,9 @@ export default function Servicios() {
                   >
                     Manejo de Mercaderías
                   </h2>
-                  <ul 
-                    className="space-y-2 text-gray-600"
-                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                  <ul
+                    className="space-y-1"
+                    style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
                     <li className="flex items-center gap-2">
                       <span className="text-[#2B4C7E]">•</span>
@@ -127,14 +128,8 @@ export default function Servicios() {
                 </div>
               </div>
 
-              <div className="mt-12">
-                <Link
-                  href="/contacto"
-                  className="inline-block border-2 border-[#2B4C7E] text-[#2B4C7E] px-8 py-3.5 font-bold text-sm hover:bg-[#2B4C7E] hover:text-white transition-colors rounded-sm"
-                  style={{ fontFamily: 'din-2014, sans-serif' }}
-                >
-                  Solicitar asesoramiento
-                </Link>
+              <div className="mt-16">
+                <CTAButtons variant="stacked" />
               </div>
             </div>
           </div>
@@ -142,16 +137,31 @@ export default function Servicios() {
 
         {/* Right Side - Image with transport label */}
         <div className="lg:w-1/2 h-[50vh] lg:h-auto lg:min-h-screen relative order-1 lg:order-2">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/servicios-02.jpg)' }}
+          <Image
+            src="/images/v2/servicios.jpg"
+            alt="Servicios - Pleamar"
+            fill
+            priority
+            quality={85}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
           {/* Transport label at bottom */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <div className="bg-white/95 backdrop-blur-sm py-5 px-8">
-              <h3 
-                className="text-xl lg:text-2xl font-bold text-center"
-                style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
+          <div className="absolute bottom-0 left-0 right-0" style={{ padding: '28px 40px' }}>
+            <div
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '6px',
+                padding: '0 32px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                height: '52px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <h3
+                className="font-bold text-center"
+                style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E', fontSize: '16px' }}
               >
                 Transporte marítimo y terrestre
               </h3>

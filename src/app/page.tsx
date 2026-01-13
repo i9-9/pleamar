@@ -3,7 +3,9 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import CTAButtons from '@/components/CTAButtons';
 import { useEffect, useState } from 'react';
 
 // Animated text component - letter by letter reveal
@@ -43,13 +45,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen">
         {/* Background - Full width image - edge to edge */}
-        <div
-          className="absolute inset-0 bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/images/v2/hero_2.jpeg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center'
-          }}
+        <Image
+          src="/images/v2/hero_2.jpeg"
+          alt="Hero Pleamar"
+          fill
+          priority
+          quality={90}
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
         
         {/* Dark Overlay */}
@@ -96,21 +98,8 @@ export default function Home() {
                 Especialistas en Comercio Exterior
               </p>
 
-              {/* Botones con padding correcto */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
-                <Link
-                  href="/contacto"
-                  className="btn btn-primary"
-                >
-                  Consultá tu operación
-                </Link>
-                <Link
-                  href="/servicios"
-                  className="btn btn-secondary"
-                >
-                  Nuestros servicios
-                </Link>
-              </div>
+              {/* Botones CTA */}
+              <CTAButtons className="mb-6" />
 
               <p
                 style={{
