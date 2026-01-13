@@ -11,16 +11,16 @@ export default function Footer() {
         padding: '48px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
       }}>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5" style={{ gap: '40px', marginBottom: '40px' }}>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4" style={{ gap: '40px', marginBottom: '40px' }}>
           {/* Logo y Dirección */}
           <div className="col-span-2 lg:col-span-2">
             <div style={{ marginBottom: '24px' }}>
               <Image
                 src="/images/logo/logo_nav.svg"
                 alt="Pleamar S.A."
-                width={160}
-                height={34}
-                style={{ height: '28px', width: 'auto' }}
+                width={300}
+                height={64}
+                style={{ width: '300px', height: 'auto' }}
               />
             </div>
             <div style={{ 
@@ -30,15 +30,14 @@ export default function Footer() {
               lineHeight: 1.8,
               marginBottom: '32px',
             }}>
-              <p>Calle 68 No 2710</p>
-              <p>CP 7630</p>
+              <p>Avenida 59 Nro 2151</p>
               <p>Necochea, Buenos Aires</p>
               <p>Argentina</p>
             </div>
             
             {/* Contact Info */}
-            <div style={{ display: 'flex', gap: '48px' }}>
-              <div>
+            <div>
+              <div style={{ marginBottom: '24px' }}>
                 <p style={{ 
                   fontFamily: 'din-2014, sans-serif',
                   fontSize: '16px',
@@ -57,7 +56,7 @@ export default function Footer() {
                     textDecoration: 'none',
                   }}
                 >
-                  +54 226 243 3336
+                  +54 2262 433336/7/8
                 </a>
               </div>
               <div>
@@ -71,7 +70,7 @@ export default function Footer() {
                   Email
                 </p>
                 <a
-                  href="mailto:pleamar@agenciapleamar.com.ar"
+                  href="mailto:operaciones@pleamar.com.ar"
                   style={{ 
                     fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                     fontSize: '16px',
@@ -79,7 +78,7 @@ export default function Footer() {
                     textDecoration: 'none',
                   }}
                 >
-                  pleamar@agenciapleamar.com.ar
+                  operaciones@pleamar.com.ar
                 </a>
               </div>
             </div>
@@ -135,51 +134,6 @@ export default function Footer() {
                 >
                   Contacto
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Redes */}
-          <div>
-            <h3 style={{ 
-              fontFamily: 'din-2014, sans-serif',
-              fontSize: '16px',
-              fontWeight: 700,
-              color: '#2B4C7E',
-              marginBottom: '16px',
-            }}>
-              Redes
-            </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              <li style={{ marginBottom: '12px' }}>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ 
-                    fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
-                    fontSize: '16px',
-                    color: '#666',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ 
-                    fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
-                    fontSize: '16px',
-                    color: '#666',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Linkedin
-                </a>
               </li>
             </ul>
           </div>

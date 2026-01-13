@@ -17,22 +17,24 @@ export default function Header() {
   ];
 
   return (
-    <header 
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        right: 0, 
-        zIndex: 50, 
-        padding: '28px 40px 0 40px' 
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        padding: '28px 40px 0 40px'
       }}
     >
-      <nav 
-        style={{ 
-          backgroundColor: 'white', 
-          borderRadius: '6px', 
+      <nav
+        style={{
+          backgroundColor: 'white',
+          borderRadius: '6px',
           padding: '0 32px',
           boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+          position: 'relative',
+          zIndex: 110,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '52px' }}>
@@ -79,41 +81,62 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-[#2B4C7E]"
+            className="flex md:hidden text-[#2B4C7E]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            style={{ fontSize: '32px', fontWeight: 500, lineHeight: 1, width: '32px', height: '32px', alignItems: 'center', justifyContent: 'center', position: 'relative', top: '-4px' }}
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <span style={{ transform: isMenuOpen ? 'rotate(45deg)' : 'rotate(0deg)', display: 'inline-block', transition: 'transform 0.3s ease' }}>+</span>
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-3 border-t border-gray-100">
-            {navItems.map((item) => (
+      {/* Mobile Navigation Overlay */}
+      {isMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-[60]"
+            style={{
+              top: 0,
+              animation: 'fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+            onClick={() => setIsMenuOpen(false)}
+          />
+          {/* Overlay Menu - full screen behind header */}
+          <div
+            className="md:hidden fixed left-0 right-0 z-[70] shadow-lg"
+            style={{
+              top: 0,
+              height: '100vh',
+              overflowY: 'auto',
+              backgroundColor: '#2B4C7E',
+              animation: 'slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingBottom: '40px',
+              paddingTop: '120px',
+            }}
+          >
+            {navItems.map((item, index) => (
               <Link
                 key={item.path}
                 href={item.path}
-                className={`relative block py-2.5 transition-colors hover:text-[#2B4C7E] ${
+                className={`relative block transition-colors ${
                   pathname === item.path
-                    ? 'text-[#2B4C7E] font-medium'
-                    : 'text-gray-600'
+                    ? 'text-white font-medium'
+                    : 'text-white/80 hover:text-white'
                 }`}
-                style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px' }}
+                style={{
+                  fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
+                  fontSize: '28px',
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
+                  borderBottom: index < navItems.length - 1 ? '1px solid rgba(255,255,255,0.15)' : 'none',
+                }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -121,10 +144,10 @@ export default function Header() {
                   <div
                     style={{
                       position: 'absolute',
-                      bottom: '8px',
                       left: 0,
-                      width: '40px',
-                      height: '2px',
+                      bottom: '18px',
+                      width: '50px',
+                      height: '3px',
                       backgroundColor: '#A83B17',
                     }}
                   />
@@ -132,8 +155,8 @@ export default function Header() {
               </Link>
             ))}
           </div>
-        )}
-      </nav>
+        </>
+      )}
     </header>
   );
 }

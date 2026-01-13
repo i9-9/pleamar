@@ -52,15 +52,28 @@ export default function Home() {
           }}
         />
         
+        {/* Dark Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          }}
+        />
+        
         {/* Content Container */}
         <div className="relative z-10 h-full flex flex-col">
           {/* Main Content - vertically centered */}
-          <div className="flex-1 flex items-center" style={{ padding: '0 40px' }}>
+          <div className="flex-1 flex items-start md:items-center" style={{ padding: '0 40px', paddingTop: '220px' }}>
+            <style jsx>{`
+              @media (min-width: 768px) {
+                div { padding-top: 0 !important; }
+              }
+            `}</style>
             <div style={{ maxWidth: '620px' }}>
-              <h1 
-                style={{ 
+              <h1
+                style={{
                   fontFamily: 'din-2014, sans-serif',
-                  fontSize: '64px',
+                  fontSize: 'clamp(36px, 8vw, 64px)',
                   lineHeight: '0.85',
                   fontWeight: 700,
                   color: 'white',
@@ -72,8 +85,8 @@ export default function Home() {
                 <br />
                 <AnimatedTitle text="y portuarias integrales" delay={400} />
               </h1>
-              <p 
-                style={{ 
+              <p
+                style={{
                   fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                   fontSize: '19px',
                   color: 'rgba(255,255,255,0.9)',
@@ -82,7 +95,7 @@ export default function Home() {
               >
                 Especialistas en Comercio Exterior
               </p>
-              
+
               {/* Botones con padding correcto */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
                 <Link
@@ -98,9 +111,9 @@ export default function Home() {
                   Nuestros servicios
                 </Link>
               </div>
-              
-              <p 
-                style={{ 
+
+              <p
+                style={{
                   fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                   fontSize: '13px',
                   color: 'rgba(255,255,255,0.7)',
@@ -139,12 +152,12 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section style={{ padding: '80px 40px', backgroundColor: '#F5F5F5' }}>
-        <div style={{ marginBottom: '48px' }}>
-          <h2 
-            style={{ 
+      <section className="min-h-screen md:h-screen" style={{ padding: 'clamp(40px, 8vw, 80px) 40px', backgroundColor: '#F5F5F5' }}>
+        <div style={{ marginBottom: 'clamp(24px, 5vw, 48px)' }}>
+          <h2
+            style={{
               fontFamily: 'din-2014, sans-serif',
-              fontSize: '99px',
+              fontSize: 'clamp(40px, 10vw, 99px)',
               lineHeight: 0.95,
               fontWeight: 700,
               color: '#2B4C7E',
@@ -152,12 +165,19 @@ export default function Home() {
               letterSpacing: '-0.03em',
             }}
           >
-            Una forma más simple de operar
+            <span className="md:hidden">
+              <AnimatedTitle text="Una forma más" delay={200} />
+              <br />
+              <AnimatedTitle text="simple de operar" delay={200} />
+            </span>
+            <span className="hidden md:inline">
+              <AnimatedTitle text="Una forma más simple de operar" delay={200} />
+            </span>
           </h2>
-          <p 
-            style={{ 
+          <p
+            style={{
               fontFamily: 'din-2014, sans-serif',
-              fontSize: '32px',
+              fontSize: 'clamp(20px, 5vw, 32px)',
               fontWeight: 700,
               color: '#2B4C7E',
               lineHeight: 1.1,
@@ -251,19 +271,19 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section style={{ padding: '80px 40px', backgroundColor: 'white' }}>
-        <h2 
-          style={{ 
+      <section className="min-h-screen md:h-screen" style={{ padding: 'clamp(40px, 8vw, 80px) 40px', backgroundColor: 'white' }}>
+        <h2
+          style={{
             fontFamily: 'din-2014, sans-serif',
-            fontSize: 'clamp(33px, 4vw, 48px)',
-            lineHeight: 1,
+            fontSize: 'clamp(40px, 10vw, 99px)',
+            lineHeight: 0.95,
             fontWeight: 700,
             color: '#2B4C7E',
-            marginBottom: '40px',
+            marginBottom: 'clamp(24px, 5vw, 40px)',
             letterSpacing: '-0.03em',
           }}
         >
-          Nuestros Servicios Principales
+          <AnimatedTitle text="Nuestros Servicios Principales" delay={200} />
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px' }}>
