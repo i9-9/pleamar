@@ -1,43 +1,32 @@
-'use client';
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import CTAButtons from '@/components/CTAButtons';
-import { useEffect, useState } from 'react';
+import { getLandingPage } from '@/lib/api';
+import { getImageUrl, getImageAlt } from '@/types/contentful';
+import ClientAnimations from '@/components/ClientAnimations';
 
-// Animated text component - letter by letter reveal
-function AnimatedTitle({ text, delay = 0 }: { text: string; delay?: number }) {
-  const [isVisible, setIsVisible] = useState(false);
+export const revalidate = 3600; // Revalidate every hour (ISR)
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
+export default async function Home() {
+  const content = await getLandingPage();
 
-  return (
-    <>
-      {text.split('').map((char, index) => (
-        <span
-          key={index}
-          style={{
-            display: 'inline-block',
-            opacity: isVisible ? 1 : 0,
-            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
-            transition: `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.025}s, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.025}s`,
-            whiteSpace: char === ' ' ? 'pre' : 'normal',
-          }}
-        >
-          {char}
-        </span>
-      ))}
-    </>
-  );
-}
+  if (!content) {
+    return (
+      <>
+        <Header />
+        <div style={{ padding: '100px 40px', textAlign: 'center' }}>
+          <p>Error loading content. Please try again later.</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
-export default function Home() {
+  const fields = content.fields;
+
   return (
     <>
       <Header />
@@ -46,14 +35,14 @@ export default function Home() {
       <section className="relative h-screen">
         {/* Background - Full width image - edge to edge */}
         <Image
-          src="/images/v2/hero_2.jpeg"
-          alt="Hero Pleamar"
+          src={getImageUrl(fields.heroImage, 2000)}
+          alt={getImageAlt(fields.heroImage, 'Hero Pleamar')}
           fill
           priority
           quality={90}
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
-        
+
         {/* Dark Overlay */}
         <div
           className="absolute inset-0"
@@ -61,16 +50,11 @@ export default function Home() {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
           }}
         />
-        
+
         {/* Content Container */}
         <div className="relative z-10 h-full flex flex-col">
           {/* Main Content - vertically centered */}
-          <div className="flex-1 flex items-start md:items-center" style={{ padding: '0 40px', paddingTop: '220px' }}>
-            <style jsx>{`
-              @media (min-width: 768px) {
-                div { padding-top: 0 !important; }
-              }
-            `}</style>
+          <div className="flex-1 flex items-start md:items-center px-10 pt-[220px] md:pt-0">
             <div style={{ maxWidth: '620px' }}>
               <h1
                 style={{
@@ -83,9 +67,9 @@ export default function Home() {
                   letterSpacing: '-0.03em',
                 }}
               >
-                <AnimatedTitle text="Soluciones marítimas" delay={200} />
+                <ClientAnimations text={fields.heroTitle1} delay={0} />
                 <br />
-                <AnimatedTitle text="y portuarias integrales" delay={400} />
+                <ClientAnimations text={fields.heroTitle2} delay={0} />
               </h1>
               <p
                 style={{
@@ -95,7 +79,7 @@ export default function Home() {
                   marginBottom: '32px',
                 }}
               >
-                Especialistas en Comercio Exterior
+                {fields.heroSubtitle}
               </p>
 
               {/* Botones CTA */}
@@ -108,7 +92,7 @@ export default function Home() {
                   color: 'rgba(255,255,255,0.7)',
                 }}
               >
-                Respuesta rápida · Atención personalizada
+                {fields.heroSecondaryText}
               </p>
             </div>
           </div>
@@ -116,10 +100,10 @@ export default function Home() {
           {/* Stats Bar - positioned above bottom */}
           <div style={{ position: 'absolute', bottom: '120px', left: '40px', right: '40px', zIndex: 10 }}>
             <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '16px' }}>
-              <AnimatedCounter end={32} suffix="+" label="Años de experiencia" duration={2000} />
-              <AnimatedCounter end={95} suffix="%" label="Operaciones sin demora" duration={2200} />
-              <AnimatedCounter end={600} suffix="+" label="Buques anuales" duration={2400} />
-              <AnimatedCounter end={24} suffix="/7" label="Respuesta inmediata" duration={1800} />
+              <AnimatedCounter end={fields.stat1Value} suffix={fields.stat1Suffix} label={fields.stat1Label} duration={2000} />
+              <AnimatedCounter end={fields.stat2Value} suffix={fields.stat2Suffix} label={fields.stat2Label} duration={2200} />
+              <AnimatedCounter end={fields.stat3Value} suffix={fields.stat3Suffix} label={fields.stat3Label} duration={2400} />
+              <AnimatedCounter end={fields.stat4Value} suffix={fields.stat4Suffix} label={fields.stat4Label} duration={1800} />
             </div>
           </div>
 
@@ -152,16 +136,11 @@ export default function Home() {
               color: '#2B4C7E',
               marginBottom: '4px',
               letterSpacing: '-0.03em',
+              hyphens: 'none',
+              wordBreak: 'keep-all',
             }}
           >
-            <span className="md:hidden">
-              <AnimatedTitle text="Una forma más" delay={200} />
-              <br />
-              <AnimatedTitle text="simple de operar" delay={200} />
-            </span>
-            <span className="hidden md:inline">
-              <AnimatedTitle text="Una forma más simple de operar" delay={200} />
-            </span>
+            <ClientAnimations text={fields.featuresTitle1} delay={0} />
           </h2>
           <p
             style={{
@@ -172,15 +151,15 @@ export default function Home() {
               lineHeight: 1.1,
             }}
           >
-            Simplificamos tus operaciones de importación y exportación
+            {fields.featuresSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px', alignItems: 'stretch' }}>
           {/* Feature Card 1 */}
-          <div style={{ 
-            backgroundColor: 'white', 
-            borderRadius: '12px', 
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
             border: '1px solid #E5E5E5',
@@ -196,19 +175,19 @@ export default function Home() {
                 </svg>
               </div>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
-                32 años de experiencia
+                {fields.feature1Title}
               </h3>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
-                Operando desde 1993, tres décadas gestionando operaciones exitosas
+                {fields.feature1Description}
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/v2/anos_experiencia.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: `url(${getImageUrl(fields.feature1Image, 800)})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 2 */}
-          <div style={{ 
-            backgroundColor: 'white', 
-            borderRadius: '12px', 
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
             border: '1px solid #E5E5E5',
@@ -222,19 +201,19 @@ export default function Home() {
                 </svg>
               </div>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
-                Presencia diversas localidades
+                {fields.feature2Title}
               </h3>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
-                Necochea, Quequén, Buenos Aires, Bahía Blanca, Mar del Plata, Paso de los Libres, Rosario, San Lorenzo, Tres Arroyos. Red Nacional para tu comodidad
+                {fields.feature2Description}
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/hero/CARD_2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: `url(${getImageUrl(fields.feature2Image, 800)})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
           {/* Feature Card 3 */}
-          <div style={{ 
-            backgroundColor: 'white', 
-            borderRadius: '12px', 
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
             overflow: 'hidden',
             boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
             border: '1px solid #E5E5E5',
@@ -248,13 +227,13 @@ export default function Home() {
                 </svg>
               </div>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '23px', fontWeight: 700, color: '#2B4C7E', marginBottom: '8px', letterSpacing: '-0.03em' }}>
-                Servicio integral
+                {fields.feature3Title}
               </h3>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '16px', color: '#2B4C7E', lineHeight: 1.5 }}>
-                De la agencia marítima al despacho final. Coordinamos toda tu operación.
+                {fields.feature3Description}
               </p>
             </div>
-            <div style={{ flex: 1, minHeight: '300px', backgroundImage: 'url(/images/v2/integral.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ flex: 1, minHeight: '300px', backgroundImage: `url(${getImageUrl(fields.feature3Image, 800)})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
         </div>
       </section>
@@ -270,9 +249,11 @@ export default function Home() {
             color: '#2B4C7E',
             marginBottom: 'clamp(24px, 5vw, 40px)',
             letterSpacing: '-0.03em',
+            hyphens: 'none',
+            wordBreak: 'keep-all',
           }}
         >
-          <AnimatedTitle text="Nuestros Servicios Principales" delay={200} />
+          <ClientAnimations text={fields.servicesTitle} delay={0} />
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px' }}>
@@ -280,10 +261,10 @@ export default function Home() {
           <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
             <div
               className="group-hover:scale-105 transition-transform duration-700"
-              style={{ 
-                position: 'absolute', 
-                inset: 0, 
-                backgroundImage: 'url(/images/v2/agencia_maritima.jpg)',
+              style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: `url(${getImageUrl(fields.service1Image, 1000)})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -291,10 +272,10 @@ export default function Home() {
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
             <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
-                ESPECIALISTAS EN
+                {fields.service1Subtitle}
               </p>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
-                Agencia marítima
+                {fields.service1Title}
               </h3>
             </div>
           </Link>
@@ -303,10 +284,10 @@ export default function Home() {
           <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
             <div
               className="group-hover:scale-105 transition-transform duration-700"
-              style={{ 
-                position: 'absolute', 
-                inset: 0, 
-                backgroundImage: 'url(/images/v2/despacho.jpg)',
+              style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: `url(${getImageUrl(fields.service2Image, 1000)})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -314,10 +295,10 @@ export default function Home() {
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
             <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
-                ESPECIALISTAS EN
+                {fields.service2Subtitle}
               </p>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
-                Despacho de aduana
+                {fields.service2Title}
               </h3>
             </div>
           </Link>
@@ -326,10 +307,10 @@ export default function Home() {
           <Link href="/servicios" className="group" style={{ display: 'block', position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '480px' }}>
             <div
               className="group-hover:scale-105 transition-transform duration-700"
-              style={{ 
-                position: 'absolute', 
-                inset: 0, 
-                backgroundImage: 'url(/images/v2/estibaje.jpg)',
+              style={{
+                position: 'absolute',
+                inset: 0,
+                backgroundImage: `url(${getImageUrl(fields.service3Image, 1000)})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -337,10 +318,10 @@ export default function Home() {
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(43,76,126,0.85) 0%, rgba(43,76,126,0.3) 50%, transparent 100%)' }} />
             <div style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px', color: 'white' }}>
               <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
-                ESPECIALISTAS EN
+                {fields.service3Subtitle}
               </p>
               <h3 style={{ fontFamily: 'din-2014, sans-serif', fontSize: '33px', fontWeight: 700, letterSpacing: '-0.03em' }}>
-                Estibaje
+                {fields.service3Title}
               </h3>
             </div>
           </Link>

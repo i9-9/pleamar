@@ -2,8 +2,28 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import CTAButtons from '@/components/CTAButtons';
+import { getNosotrosPage } from '@/lib/api';
+import { getImageUrl, getImageAlt } from '@/types/contentful';
 
-export default function Nosotros() {
+export const revalidate = 3600; // Revalidate every hour (ISR)
+
+export default async function Nosotros() {
+  const content = await getNosotrosPage();
+
+  if (!content) {
+    return (
+      <>
+        <Header />
+        <div style={{ padding: '100px 40px', textAlign: 'center' }}>
+          <p>Error loading content. Please try again later.</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const fields = content.fields;
+
   return (
     <>
       <Header />
@@ -13,8 +33,8 @@ export default function Nosotros() {
         {/* Left Side - Image */}
         <div className="lg:w-1/2 h-[50vh] lg:h-auto lg:min-h-screen relative">
           <Image
-            src="/images/v2/nosotros.jpg"
-            alt="Nosotros - Pleamar"
+            src={getImageUrl(fields.mainImage, 1500)}
+            alt={getImageAlt(fields.mainImage, 'Nosotros - Pleamar')}
             fill
             priority
             quality={85}
@@ -30,63 +50,59 @@ export default function Nosotros() {
                 className="text-[32px] lg:text-[44px] leading-[0.95] font-bold mb-8"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
-                Desde 1993 facilitamos el<br />
-                comercio exterior en Necochea
+                {fields.title}
               </h1>
-              
+
               <div
                 className="space-y-5 mb-10"
                 style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72' }}
               >
                 <p className="text-base leading-relaxed">
-                  Somos una agencia marítima integral que gestiona cada etapa de tu operación: desde el arribo del buque hasta la entrega final de la mercadería.
+                  {fields.paragraph1}
                 </p>
                 <p className="text-base leading-relaxed">
-                  Con más de 32 años de experiencia, trabajamos con pequeñas, medianas y grandes empresas que buscan agilidad, confianza y soluciones personalizadas.
+                  {fields.paragraph2}
                 </p>
               </div>
 
               <div className="space-y-4 mb-10">
                 <div className="flex items-start gap-3">
-                  <svg 
-                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5" 
-                    fill="currentColor" 
+                  <svg
+                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5"
+                    fill="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                    <span className="font-bold text-[#2B4C7E]" style={{ fontFamily: 'din-2014, sans-serif' }}>Presencia nacional:</span>{' '}
-                    <span style={{ color: '#364B72' }}>Necochea, Buenos Aires, Bahía Blanca, Mar del Plata, Rosario, San Lorenzo y Paso de los Libres</span>
+                    <span className="font-bold text-[#2B4C7E]" style={{ fontFamily: 'din-2014, sans-serif' }}>{fields.bullet1Title}</span>{' '}
+                    <span style={{ color: '#364B72' }}>{fields.bullet1Description}</span>
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <svg 
-                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5" 
-                    fill="currentColor" 
+                  <svg
+                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5"
+                    fill="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72' }}>
-                    <span>Equipo de </span>
-                    <span className="font-bold text-[#2B4C7E]" style={{ fontFamily: 'din-2014, sans-serif' }}>profesionales</span>
-                    <span> especializados</span>
+                    {fields.bullet2Text}
                   </p>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <svg 
-                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5" 
-                    fill="currentColor" 
+                  <svg
+                    className="w-5 h-5 text-[#2B4C7E] flex-shrink-0 mt-0.5"
+                    fill="currentColor"
                     viewBox="0 0 20 20"
                   >
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <p style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72' }}>
-                    <span className="font-bold text-[#2B4C7E]" style={{ fontFamily: 'din-2014, sans-serif' }}>Atención personalizada</span>
-                    <span> para cada operación</span>
+                    {fields.bullet3Text}
                   </p>
                 </div>
               </div>

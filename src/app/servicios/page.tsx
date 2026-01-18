@@ -2,8 +2,28 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import CTAButtons from '@/components/CTAButtons';
+import { getServiciosPage } from '@/lib/api';
+import { getImageUrl, getImageAlt } from '@/types/contentful';
 
-export default function Servicios() {
+export const revalidate = 3600; // Revalidate every hour (ISR)
+
+export default async function Servicios() {
+  const content = await getServiciosPage();
+
+  if (!content) {
+    return (
+      <>
+        <Header />
+        <div style={{ padding: '100px 40px', textAlign: 'center' }}>
+          <p>Error loading content. Please try again later.</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const fields = content.fields;
+
   return (
     <>
       <Header />
@@ -11,125 +31,104 @@ export default function Servicios() {
       {/* Main Content - Split Layout */}
       <section className="min-h-screen flex flex-col lg:flex-row">
         {/* Left Side - Content */}
-        <div className="lg:w-1/2 bg-white flex items-center order-2 lg:order-1 pt-24">
-          <div className="w-full py-20 lg:py-0">
+        <div className="lg:w-1/2 bg-white flex items-center order-2 lg:order-1 pt-6 lg:pt-24">
+          <div className="w-full py-6 lg:py-0">
             <div className="max-w-xl mx-auto px-5 md:px-10 lg:px-0 lg:ml-[72px]">
               <h1
                 className="text-[32px] lg:text-[44px] leading-[0.95] font-bold mb-12"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
-                Acompañamos su operación<br />
-                de punta a punta
+                {fields.title}
               </h1>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-                {/* Gestión Aduanera */}
+                {/* Category 1 */}
                 <div>
-                  <h2 
+                  <h2
                     className="text-lg font-bold mb-3"
                     style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
                   >
-                    Gestión Aduanera
+                    {fields.category1Title}
                   </h2>
                   <ul
                     className="space-y-1"
                     style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Despacho de Aduana</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Agente de Transporte Aduanero</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Representación ante organismos</span>
-                    </li>
+                    {(fields.category1Items as string[] || []).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="text-[#2B4C7E]">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
-                {/* Operaciones Logísticas */}
+                {/* Category 2 */}
                 <div>
-                  <h2 
+                  <h2
                     className="text-lg font-bold mb-3"
                     style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
                   >
-                    Operaciones Logísticas
+                    {fields.category2Title}
                   </h2>
                   <ul
                     className="space-y-1"
                     style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Transporte marítimo y terrestre</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Logística y coordinación</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Coordinación de embarque</span>
-                    </li>
+                    {(fields.category2Items as string[] || []).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="text-[#2B4C7E]">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
-                {/* Gestión Documental */}
+                {/* Category 3 */}
                 <div>
-                  <h2 
+                  <h2
                     className="text-lg font-bold mb-3"
                     style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
                   >
-                    Gestión Documental
+                    {fields.category3Title}
                   </h2>
                   <ul
                     className="space-y-1"
                     style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Tramitación de<br />documentos comerciales</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Asesoramiento en<br />comercio exterior</span>
-                    </li>
+                    {(fields.category3Items as string[] || []).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="text-[#2B4C7E]">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
-                {/* Manejo de Mercaderías */}
+                {/* Category 4 */}
                 <div>
-                  <h2 
+                  <h2
                     className="text-lg font-bold mb-3"
                     style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
                   >
-                    Manejo de Mercaderías
+                    {fields.category4Title}
                   </h2>
                   <ul
                     className="space-y-1"
                     style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72', lineHeight: '1.3' }}
                   >
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Estibaje</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Recepción</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#2B4C7E]">•</span>
-                      <span>Entrega</span>
-                    </li>
+                    {(fields.category4Items as string[] || []).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="text-[#2B4C7E]">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
               <div className="mt-16">
-                <CTAButtons variant="stacked" />
+                <CTAButtons variant="stacked" hideServicios />
               </div>
             </div>
           </div>
@@ -138,8 +137,8 @@ export default function Servicios() {
         {/* Right Side - Image with transport label */}
         <div className="lg:w-1/2 h-[50vh] lg:h-auto lg:min-h-screen relative order-1 lg:order-2">
           <Image
-            src="/images/v2/servicios.jpg"
-            alt="Servicios - Pleamar"
+            src={getImageUrl(fields.mainImage, 1500)}
+            alt={getImageAlt(fields.mainImage, 'Servicios - Pleamar')}
             fill
             priority
             quality={85}
@@ -163,7 +162,7 @@ export default function Servicios() {
                 className="font-bold text-center"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E', fontSize: '16px' }}
               >
-                Transporte marítimo y terrestre
+                {fields.transportLabel}
               </h3>
             </div>
           </div>

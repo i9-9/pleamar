@@ -153,20 +153,20 @@ export default function Footer() {
               <li style={{ marginBottom: '12px' }}>
                 <Link
                   href="/terminos"
-                  style={{ 
+                  style={{
                     fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                     fontSize: '16px',
                     color: '#666',
                     textDecoration: 'none',
                   }}
                 >
-                  Términos de servicio
+                  Términos y condiciones
                 </Link>
               </li>
               <li>
                 <Link
                   href="/privacidad"
-                  style={{ 
+                  style={{
                     fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                     fontSize: '16px',
                     color: '#666',

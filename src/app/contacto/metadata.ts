@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contacto - Agencia Pleamar SA",
     description: "Contactanos para consultas sobre comercio exterior, agencia marítima y despacho de aduana. Respuesta rápida y atención personalizada.",
-    url: "https://pleamar.com.ar/contacto",
+    url: "https://agenciapleamar.com/contacto",
     type: "website"
   },
   alternates: {
-    canonical: "https://pleamar.com.ar/contacto"
+    canonical: "https://agenciapleamar.com/contacto"
   }
 };

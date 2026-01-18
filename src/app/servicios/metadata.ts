@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Servicios de Comercio Exterior - Agencia Pleamar SA",
     description: "Agencia marítima, despacho de aduana, estibaje y servicios integrales de comercio exterior en Argentina.",
-    url: "https://pleamar.com.ar/servicios",
+    url: "https://agenciapleamar.com/servicios",
     type: "website",
     images: [
       {
@@ -30,6 +30,6 @@ export const metadata: Metadata = {
     ]
   },
   alternates: {
-    canonical: "https://pleamar.com.ar/servicios"
+    canonical: "https://agenciapleamar.com/servicios"
   }
 };

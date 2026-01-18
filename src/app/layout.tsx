@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pleamar.com.ar'),
+  metadataBase: new URL('https://agenciapleamar.com'),
   title: {
     default: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima en Argentina",
     template: "%s | Agencia Pleamar SA"
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://pleamar.com.ar",
+    url: "https://agenciapleamar.com",
     siteName: "Agencia Pleamar SA",
     title: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima",
     description: "32 años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://pleamar.com.ar"
+    canonical: "https://agenciapleamar.com"
   },
   verification: {
     // Agregar códigos de verificación cuando estén disponibles
@@ -86,13 +86,13 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://pleamar.com.ar/#organization",
+    "@id": "https://agenciapleamar.com/#organization",
     "name": "Agencia Pleamar SA",
     "legalName": "Agencia Pleamar Sociedad Anónima",
-    "url": "https://pleamar.com.ar",
+    "url": "https://agenciapleamar.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://pleamar.com.ar/images/logo/logo_nav.svg",
+      "url": "https://agenciapleamar.com/images/logo/logo_nav.svg",
       "width": 200,
       "height": 50
     },
@@ -158,9 +158,9 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://pleamar.com.ar/#localbusiness",
+    "@id": "https://agenciapleamar.com/#localbusiness",
     "name": "Agencia Pleamar SA - Necochea",
-    "image": "https://pleamar.com.ar/images/v2/hero_2.jpeg",
+    "image": "https://agenciapleamar.com/images/v2/hero_2.jpeg",
     "telephone": "+54-2262-433336",
     "email": "operaciones@pleamar.com.ar",
     "address": {
@@ -176,7 +176,7 @@ export default function RootLayout({
       "latitude": "-38.5545",
       "longitude": "-58.7395"
     },
-    "url": "https://pleamar.com.ar",
+    "url": "https://agenciapleamar.com",
     "priceRange": "$$",
     "openingHours": "Mo-Fr 09:00-18:00",
     "aggregateRating": {
@@ -190,7 +190,7 @@ export default function RootLayout({
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://pleamar.com.ar/#service",
+    "@id": "https://agenciapleamar.com/#service",
     "name": "Agencia Pleamar SA",
     "serviceType": [
       "Agencia Marítima",
@@ -201,7 +201,7 @@ export default function RootLayout({
       "Logística Portuaria"
     ],
     "provider": {
-      "@id": "https://pleamar.com.ar/#organization"
+      "@id": "https://agenciapleamar.com/#organization"
     },
     "areaServed": {
       "@type": "Country",

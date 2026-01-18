@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sobre Agencia Pleamar SA - 32 Años de Experiencia",
     description: "Desde 1993 facilitamos el comercio exterior en Argentina con presencia nacional y atención personalizada.",
-    url: "https://pleamar.com.ar/nosotros",
+    url: "https://agenciapleamar.com/nosotros",
     type: "website",
     images: [
       {
@@ -27,6 +27,6 @@ export const metadata: Metadata = {
     ]
   },
   alternates: {
-    canonical: "https://pleamar.com.ar/nosotros"
+    canonical: "https://agenciapleamar.com/nosotros"
   }
 };

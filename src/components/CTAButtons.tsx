@@ -3,9 +3,11 @@ import Link from 'next/link';
 interface CTAButtonsProps {
   variant?: 'default' | 'stacked';
   className?: string;
+  /** Oculta el botón "Nuestros servicios" (útil en la página /servicios) */
+  hideServicios?: boolean;
 }
 
-export default function CTAButtons({ variant = 'default', className = '' }: CTAButtonsProps) {
+export default function CTAButtons({ variant = 'default', className = '', hideServicios = false }: CTAButtonsProps) {
   if (variant === 'stacked') {
     return (
       <div className={`flex flex-col gap-3 ${className}`}>
@@ -15,12 +17,14 @@ export default function CTAButtons({ variant = 'default', className = '' }: CTAB
         >
           Consultá tu operación
         </Link>
-        <Link
-          href="/servicios"
-          className="btn btn-secondary text-center"
-        >
-          Nuestros servicios
-        </Link>
+        {!hideServicios && (
+          <Link
+            href="/servicios"
+            className="btn btn-secondary text-center"
+          >
+            Nuestros servicios
+          </Link>
+        )}
       </div>
     );
   }
@@ -33,12 +37,14 @@ export default function CTAButtons({ variant = 'default', className = '' }: CTAB
       >
         Consultá tu operación
       </Link>
-      <Link
-        href="/servicios"
-        className="btn btn-secondary"
-      >
-        Nuestros servicios
-      </Link>
+      {!hideServicios && (
+        <Link
+          href="/servicios"
+          className="btn btn-secondary"
+        >
+          Nuestros servicios
+        </Link>
+      )}
     </div>
   );
 }

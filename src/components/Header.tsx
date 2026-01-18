@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -15,6 +16,22 @@ export default function Header() {
     { name: 'Servicios', path: '/servicios' },
     { name: 'Contacto', path: '/contacto' },
   ];
+
+  const handleCloseMenu = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsClosing(false);
+    }, 300); // Duración de la animación
+  };
+
+  const handleToggleMenu = () => {
+    if (isMenuOpen) {
+      handleCloseMenu();
+    } else {
+      setIsMenuOpen(true);
+    }
+  };
 
   return (
     <header
@@ -83,7 +100,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             className="flex md:hidden text-[#2B4C7E]"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={handleToggleMenu}
             aria-label="Toggle menu"
             style={{ fontSize: '32px', fontWeight: 500, lineHeight: 1, width: '32px', height: '32px', alignItems: 'center', justifyContent: 'center', position: 'relative', top: '-4px' }}
           >
@@ -93,26 +110,28 @@ export default function Header() {
       </nav>
 
       {/* Mobile Navigation Overlay */}
-      {isMenuOpen && (
+      {(isMenuOpen || isClosing) && (
         <>
           {/* Backdrop */}
           <div
-            className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-[60]"
+            className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-[60] transition-opacity duration-300 ${
+              isClosing ? 'opacity-0' : 'opacity-100'
+            }`}
             style={{
               top: 0,
-              animation: 'fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleCloseMenu}
           />
           {/* Overlay Menu - full screen behind header */}
           <div
-            className="md:hidden fixed left-0 right-0 z-[70] shadow-lg"
+            className={`md:hidden fixed left-0 right-0 z-[70] shadow-lg transition-opacity duration-300 ${
+              isClosing ? 'opacity-0' : 'opacity-100'
+            }`}
             style={{
               top: 0,
               height: '100vh',
               overflowY: 'auto',
               backgroundColor: '#2B4C7E',
-              animation: 'slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -138,7 +157,7 @@ export default function Header() {
                   paddingBottom: '20px',
                   borderBottom: index < navItems.length - 1 ? '1px solid rgba(255,255,255,0.15)' : 'none',
                 }}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={handleCloseMenu}
               >
                 {item.name}
                 {pathname === item.path && (

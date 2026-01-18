@@ -6,18 +6,27 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "contentful:setup": "node scripts/setup-contentful-schema.js && node scripts/setup-contentful-content.js",
+    "contentful:schema": "node scripts/setup-contentful-schema.js",
+    "contentful:content": "node scripts/setup-contentful-content.js"
   },
   "dependencies": {
+    "@types/nodemailer": "^7.0.5",
+    "contentful": "^11.10.2",
     "next": "16.0.10",
+    "nodemailer": "^7.0.12",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "react-intersection-observer": "^10.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.23",
+    "contentful-management": "^11.67.2",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "postcss": "^8.5.6",
