@@ -39,7 +39,11 @@ export default async function Servicios() {
                 className="text-[32px] lg:text-[44px] leading-[0.95] font-bold mb-12"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
-                <ClientAnimations text={fields.title} delay={0} />
+                <ClientAnimations
+                  text={fields.title}
+                  mobileText={fields.title.replace('operación ', 'operación\n')}
+                  delay={0}
+                />
               </h1>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
