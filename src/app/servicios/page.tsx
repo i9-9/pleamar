@@ -40,8 +40,8 @@ export default async function Servicios() {
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
                 <ClientAnimations
-                  text={fields.title}
-                  mobileText={fields.title.replace('operación ', 'operación\n')}
+                  text={fields.title.replace(' | ', ' ')}
+                  mobileText={fields.title.replace(' | ', '\n')}
                   delay={0}
                 />
               </h1>

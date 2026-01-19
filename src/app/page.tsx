@@ -139,8 +139,8 @@ export default async function Home() {
             }}
           >
             <ClientAnimations
-              text={fields.featuresTitle1}
-              mobileText={fields.featuresTitle1.replace('más simple', 'más simple\n')}
+              text={fields.featuresTitle1.replace(' | ', ' ')}
+              mobileText={fields.featuresTitle1.replace(' | ', '\n')}
               delay={0}
             />
           </h2>
@@ -153,8 +153,12 @@ export default async function Home() {
               lineHeight: 1.1,
             }}
           >
-            <span className="md:hidden">{fields.featuresSubtitle.replace('el ', 'el\n')}</span>
-            <span className="hidden md:inline">{fields.featuresSubtitle}</span>
+            <span className="md:!hidden">
+              {fields.featuresSubtitle.replace(' | ', '\n').split('\n').map((line, idx) => (
+                idx === 0 ? <span key={idx}>{line}<br /></span> : <span key={idx}>{line}</span>
+              ))}
+            </span>
+            <span className="!hidden md:!inline">{fields.featuresSubtitle.replace(' | ', ' ')}</span>
           </p>
         </div>
 
@@ -257,8 +261,8 @@ export default async function Home() {
           }}
         >
           <ClientAnimations
-            text={fields.servicesTitle}
-            mobileText={fields.servicesTitle.replace('Nuestros ', 'Nuestros\n')}
+            text={fields.servicesTitle.replace(' | ', ' ')}
+            mobileText={fields.servicesTitle.replace(' | ', '\n')}
             delay={0}
           />
         </h2>

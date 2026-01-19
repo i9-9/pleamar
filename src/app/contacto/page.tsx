@@ -65,11 +65,11 @@ export default function Contacto() {
           <div className="text-center mb-12">
             <h1
               className="text-[40px] lg:text-[64px] font-bold mb-4"
-              style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
+              style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E', lineHeight: '0.95' }}
             >
               <ClientAnimations
-                text="Consultá con expertos"
-                mobileText="Consultá\ncon expertos"
+                text={"Consultá con expertos".replace(' | ', ' ')}
+                mobileText={"Consultá | con expertos".replace(' | ', '\n')}
                 delay={0}
               />
             </h1>
