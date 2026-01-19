@@ -45,10 +45,10 @@ export default function Header() {
       }}
     >
       <nav
+        className="pl-4 pr-8 md:px-8"
         style={{
           backgroundColor: '#E5E5E5',
           borderRadius: '6px',
-          padding: '0 32px',
           boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
           border: '1px solid #C5C5C5',
           position: 'relative',

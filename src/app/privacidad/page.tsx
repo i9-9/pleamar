@@ -22,30 +22,30 @@ export default function PoliticaPrivacidad() {
           fontSize: 'clamp(32px, 6vw, 48px)',
           fontWeight: 700,
           marginBottom: '20px',
-          color: '#1a1a1a'
+          color: '#2B4C7E'
         }}>
           Política de Privacidad
         </h1>
 
         <p style={{
           fontSize: '14px',
-          color: '#666',
+          color: '#364B72',
           marginBottom: '40px'
         }}>
-          Última actualización: Enero 2025
+          Última actualización: Enero 2026
         </p>
 
         <div style={{
           fontSize: '16px',
           lineHeight: '1.8',
-          color: '#333'
+          color: '#364B72'
         }}>
           <section style={{ marginBottom: '32px' }}>
             <h2 style={{
               fontSize: '20px',
               fontWeight: 700,
               marginBottom: '12px',
-              color: '#1a1a1a'
+              color: '#2B4C7E'
             }}>
               Datos que recopilamos
             </h2>
@@ -59,7 +59,7 @@ export default function PoliticaPrivacidad() {
               fontSize: '20px',
               fontWeight: 700,
               marginBottom: '12px',
-              color: '#1a1a1a'
+              color: '#2B4C7E'
             }}>
               Uso de la información
             </h2>
@@ -73,7 +73,7 @@ export default function PoliticaPrivacidad() {
               fontSize: '20px',
               fontWeight: 700,
               marginBottom: '12px',
-              color: '#1a1a1a'
+              color: '#2B4C7E'
             }}>
               Cookies
             </h2>
@@ -87,7 +87,7 @@ export default function PoliticaPrivacidad() {
               fontSize: '20px',
               fontWeight: 700,
               marginBottom: '12px',
-              color: '#1a1a1a'
+              color: '#2B4C7E'
             }}>
               Sus derechos
             </h2>
@@ -101,7 +101,7 @@ export default function PoliticaPrivacidad() {
               fontSize: '20px',
               fontWeight: 700,
               marginBottom: '12px',
-              color: '#1a1a1a'
+              color: '#2B4C7E'
             }}>
               Contacto
             </h2>

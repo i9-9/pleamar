@@ -156,7 +156,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                     fontSize: '16px',
-                    color: '#666',
+                    color: '#364B72',
                     textDecoration: 'none',
                   }}
                 >
@@ -169,7 +169,7 @@ export default function Footer() {
                   style={{
                     fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
                     fontSize: '16px',
-                    color: '#666',
+                    color: '#364B72',
                     textDecoration: 'none',
                   }}
                 >

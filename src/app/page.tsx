@@ -67,9 +67,7 @@ export default async function Home() {
                   letterSpacing: '-0.03em',
                 }}
               >
-                <ClientAnimations text={fields.heroTitle1} delay={0} />
-                <br />
-                <ClientAnimations text={fields.heroTitle2} delay={0} />
+                <ClientAnimations text={`${fields.heroTitle1}\n${fields.heroTitle2}`} delay={0} />
               </h1>
               <p
                 style={{
@@ -140,7 +138,11 @@ export default async function Home() {
               wordBreak: 'keep-all',
             }}
           >
-            <ClientAnimations text={fields.featuresTitle1} delay={0} />
+            <ClientAnimations
+              text={fields.featuresTitle1}
+              mobileText={fields.featuresTitle1.replace('más simple', 'más simple\n')}
+              delay={0}
+            />
           </h2>
           <p
             style={{
@@ -151,7 +153,8 @@ export default async function Home() {
               lineHeight: 1.1,
             }}
           >
-            {fields.featuresSubtitle}
+            <span className="md:hidden">{fields.featuresSubtitle.replace('el ', 'el\n')}</span>
+            <span className="hidden md:inline">{fields.featuresSubtitle}</span>
           </p>
         </div>
 
@@ -253,7 +256,11 @@ export default async function Home() {
             wordBreak: 'keep-all',
           }}
         >
-          <ClientAnimations text={fields.servicesTitle} delay={0} />
+          <ClientAnimations
+            text={fields.servicesTitle}
+            mobileText={fields.servicesTitle.replace('Nuestros ', 'Nuestros\n')}
+            delay={0}
+          />
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '24px' }}>

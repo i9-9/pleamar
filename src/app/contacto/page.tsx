@@ -67,7 +67,11 @@ export default function Contacto() {
               className="text-[40px] lg:text-[64px] font-bold mb-4"
               style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
             >
-              <ClientAnimations text="Consultá con expertos" delay={0} />
+              <ClientAnimations
+                text="Consultá con expertos"
+                mobileText="Consultá\ncon expertos"
+                delay={0}
+              />
             </h1>
             <p
               className="text-lg lg:text-xl"
