@@ -75,6 +75,9 @@ export const metadata: Metadata = {
     // yandex: 'código-de-yandex',
   },
   category: 'business',
+  other: {
+    'image-credits': 'Photography by Bob Brewer, Waldemar Brandt, Jack Castles, Haris Illahi, Juan Pablo Mascanfroni, Jose Rago, Maverick Timotius, william william, Natalya Letunova, and Shavin Peiries on Unsplash',
+  },
 };
 
 export default function RootLayout({
@@ -248,6 +251,20 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#2B4C7E" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+        {/* Photography Credits */}
+        {/* Photos courtesy of Unsplash photographers:
+            - Bob Brewer (https://unsplash.com/@brewbottle)
+            - Waldemar Brandt (https://unsplash.com/@waldemarbrandt67w)
+            - Jack Castles (https://unsplash.com/@jackcastles)
+            - Haris Illahi (https://unsplash.com/@harisillahi)
+            - Juan Pablo Mascanfroni (https://unsplash.com/@juanpmascanfroni)
+            - Jose Rago (https://unsplash.com/@joserago)
+            - Maverick Timotius (https://unsplash.com/@mavericktimotius)
+            - william william (https://unsplash.com/@williamtm)
+            - Natalya Letunova (https://unsplash.com/@talya_angel)
+            - Shavin Peiries (https://unsplash.com/@shavinp)
+        */}
 
         {/* JSON-LD Structured Data */}
         <script
