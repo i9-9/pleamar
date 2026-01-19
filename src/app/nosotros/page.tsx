@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import CTAButtons from '@/components/CTAButtons';
+import ClientAnimations from '@/components/ClientAnimations';
 import { getNosotrosPage } from '@/lib/api';
 import { getImageUrl, getImageAlt } from '@/types/contentful';
 
@@ -50,7 +51,7 @@ export default async function Nosotros() {
                 className="text-[32px] lg:text-[44px] leading-[0.95] font-bold mb-8"
                 style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
               >
-                {fields.title}
+                <ClientAnimations text={fields.title} delay={0} />
               </h1>
 
               <div

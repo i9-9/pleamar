@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ClientAnimations from '@/components/ClientAnimations';
 import { useState } from 'react';
 
 export default function Contacto() {
@@ -66,7 +67,7 @@ export default function Contacto() {
               className="text-[40px] lg:text-[64px] font-bold mb-4"
               style={{ fontFamily: 'din-2014, sans-serif', color: '#2B4C7E' }}
             >
-              Consultá con expertos
+              <ClientAnimations text="Consultá con expertos" delay={0} />
             </h1>
             <p
               className="text-lg lg:text-xl"
