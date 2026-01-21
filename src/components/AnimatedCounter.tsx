@@ -63,33 +63,33 @@ export default function AnimatedCounter({
   };
 
   return (
-    <div 
+    <div
       ref={ref}
-      style={{ 
-        backgroundColor: 'rgba(0, 0, 0, 0.7)', 
-        padding: '20px 24px', 
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        padding: 'clamp(12px, 3vw, 20px) clamp(16px, 4vw, 24px)',
         borderRadius: '4px',
         borderTop: '3px solid #A83B17',
-        backdropFilter: 'blur(8px)' 
+        backdropFilter: 'blur(8px)'
       }}
     >
-      <div 
-        style={{ 
-          fontFamily: 'din-2014, sans-serif', 
-          fontSize: '40px', 
-          fontWeight: 700, 
-          color: 'white', 
-          lineHeight: 1 
+      <div
+        style={{
+          fontFamily: 'din-2014, sans-serif',
+          fontSize: 'clamp(28px, 6vw, 40px)',
+          fontWeight: 700,
+          color: 'white',
+          lineHeight: 1
         }}
       >
         {prefix}{count}{suffix}
       </div>
-      <div 
-        style={{ 
-          fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', 
-          fontSize: '13px', 
-          color: 'rgba(255,255,255,0.8)', 
-          marginTop: '4px' 
+      <div
+        style={{
+          fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif',
+          fontSize: 'clamp(11px, 2.5vw, 13px)',
+          color: 'rgba(255,255,255,0.8)',
+          marginTop: '4px'
         }}
       >
         {label}

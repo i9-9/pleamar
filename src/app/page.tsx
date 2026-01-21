@@ -52,18 +52,19 @@ export default async function Home() {
         />
 
         {/* Content Container */}
-        <div className="relative z-10 h-full flex flex-col">
-          {/* Main Content - vertically centered */}
-          <div className="flex-1 flex items-start md:items-center px-10 pt-[220px] md:pt-0">
+        <div className="relative z-10 h-full flex flex-col justify-between px-10">
+          {/* Main Content - top section */}
+          <div className="flex-shrink-0 pt-[260px] md:pt-[160px] lg:pt-[200px]">
             <div style={{ maxWidth: '620px' }}>
               <h1
+                className="-mb-2 md:-mb-6"
                 style={{
                   fontFamily: 'din-2014, sans-serif',
                   fontSize: 'clamp(36px, 8vw, 64px)',
                   lineHeight: '0.85',
                   fontWeight: 700,
                   color: 'white',
-                  marginBottom: '20px',
+                  marginTop: '50px',
                   letterSpacing: '-0.03em',
                 }}
               >
@@ -95,29 +96,32 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Stats Bar - positioned above bottom */}
-          <div style={{ position: 'absolute', bottom: '120px', left: '40px', right: '40px', zIndex: 10 }}>
-            <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '16px' }}>
-              <AnimatedCounter end={fields.stat1Value} suffix={fields.stat1Suffix} label={fields.stat1Label} duration={2000} />
-              <AnimatedCounter end={fields.stat2Value} suffix={fields.stat2Suffix} label={fields.stat2Label} duration={2200} />
-              <AnimatedCounter end={fields.stat3Value} suffix={fields.stat3Suffix} label={fields.stat3Label} duration={2400} />
-              <AnimatedCounter end={fields.stat4Value} suffix={fields.stat4Suffix} label={fields.stat4Label} duration={1800} />
+          {/* Stats Bar and Scroll Indicator - bottom section */}
+          <div className="flex-shrink-0 pb-6 pt-8 md:pt-0">
+            {/* Stats Bar */}
+            <div style={{ marginBottom: '40px' }}>
+              <div className="grid grid-cols-2 lg:grid-cols-4" style={{ gap: '16px' }}>
+                <AnimatedCounter end={fields.stat1Value} suffix={fields.stat1Suffix} label={fields.stat1Label} duration={2000} />
+                <AnimatedCounter end={fields.stat2Value} suffix={fields.stat2Suffix} label={fields.stat2Label} duration={2200} />
+                <AnimatedCounter end={fields.stat3Value} suffix={fields.stat3Suffix} label={fields.stat3Label} duration={2400} />
+                <AnimatedCounter end={fields.stat4Value} suffix={fields.stat4Suffix} label={fields.stat4Label} duration={1800} />
+              </div>
             </div>
-          </div>
 
-          {/* Scroll Indicator */}
-          <div style={{ position: 'absolute', bottom: '24px', left: '40px', zIndex: 10 }}>
-            <svg
-              style={{ width: '28px', height: '28px', color: 'white' }}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 9l-7 7-7-7" />
-            </svg>
+            {/* Scroll Indicator */}
+            <div>
+              <svg
+                style={{ width: '28px', height: '28px', color: 'white' }}
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
           </div>
         </div>
       </section>
@@ -128,7 +132,7 @@ export default async function Home() {
           <h2
             style={{
               fontFamily: 'din-2014, sans-serif',
-              fontSize: 'clamp(40px, 10vw, 99px)',
+              fontSize: 'clamp(36px, 8vw, 80px)',
               lineHeight: 0.95,
               fontWeight: 700,
               color: '#2B4C7E',
@@ -147,7 +151,7 @@ export default async function Home() {
           <p
             style={{
               fontFamily: 'din-2014, sans-serif',
-              fontSize: 'clamp(20px, 5vw, 32px)',
+              fontSize: 'clamp(16px, 3.5vw, 24px)',
               fontWeight: 700,
               color: '#2B4C7E',
               lineHeight: 1.1,
@@ -250,7 +254,7 @@ export default async function Home() {
         <h2
           style={{
             fontFamily: 'din-2014, sans-serif',
-            fontSize: 'clamp(40px, 10vw, 99px)',
+            fontSize: 'clamp(36px, 8vw, 80px)',
             lineHeight: 0.95,
             fontWeight: 700,
             color: '#2B4C7E',

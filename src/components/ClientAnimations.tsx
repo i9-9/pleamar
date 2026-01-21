@@ -2,7 +2,7 @@
 
 import { useInView } from 'react-intersection-observer';
 
-// Animated text component - letter by letter reveal
+// Animated text component - word by word reveal
 export default function ClientAnimations({
   text,
   delay = 0,
@@ -19,30 +19,31 @@ export default function ClientAnimations({
     threshold: 0.1,
   });
 
-  // Renderizar texto animado palabra por palabra para evitar word-wrap
+  // Renderizar texto animado palabra por palabra
   const renderAnimatedText = (textContent: string, keyPrefix: string) => {
     const lines = textContent.split('\n');
 
     return lines.map((line, lineIdx) => (
       <span key={`${keyPrefix}-line-${lineIdx}`} style={{ display: 'block' }}>
-        {line.split(' ').map((word, wordIdx) => (
-          <span key={`${keyPrefix}-word-${lineIdx}-${wordIdx}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-            {word.split('').map((char, charIdx) => (
-              <span
-                key={`${keyPrefix}-char-${lineIdx}-${wordIdx}-${charIdx}`}
-                style={{
-                  display: 'inline-block',
-                  opacity: inView ? 1 : 0,
-                  filter: inView ? 'blur(0px)' : 'blur(4px)',
-                  transition: `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + ((lineIdx * 100) + (wordIdx * 50) + (charIdx * 25))}ms, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + ((lineIdx * 100) + (wordIdx * 50) + (charIdx * 25))}ms`,
-                }}
-              >
-                {char}
-              </span>
-            ))}
-            {wordIdx < line.split(' ').length - 1 && <span style={{ display: 'inline-block', width: '0.25em' }}> </span>}
-          </span>
-        ))}
+        {line.split(' ').map((word, wordIdx) => {
+          const totalWordsBefore = lines.slice(0, lineIdx).reduce((acc, l) => acc + l.split(' ').length, 0);
+          const globalWordIdx = totalWordsBefore + wordIdx;
+
+          return (
+            <span
+              key={`${keyPrefix}-word-${lineIdx}-${wordIdx}`}
+              style={{
+                display: 'inline-block',
+                marginRight: wordIdx < line.split(' ').length - 1 ? '0.25em' : '0',
+                opacity: inView ? 1 : 0,
+                filter: inView ? 'blur(0px)' : 'blur(4px)',
+                transition: `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + (globalWordIdx * 50)}ms, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + (globalWordIdx * 50)}ms`,
+              }}
+            >
+              {word}
+            </span>
+          );
+        })}
       </span>
     ));
   };
@@ -58,26 +59,7 @@ export default function ClientAnimations({
       </span>
     </>
   ) : (
-    // Si no hay mobileText, usar el comportamiento original
-    text.split('').map((char, index) => {
-      if (char === '\n') {
-        return <br key={index} />;
-      }
-      return (
-        <span
-          key={index}
-          style={{
-            display: 'inline-block',
-            opacity: inView ? 1 : 0,
-            filter: inView ? 'blur(0px)' : 'blur(4px)',
-            transition: `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + (index * 25)}ms, filter 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${delay + (index * 25)}ms`,
-            whiteSpace: char === ' ' ? 'pre' : 'normal',
-          }}
-        >
-          {char}
-        </span>
-      );
-    })
+    renderAnimatedText(text, 'default')
   );
 
   return (
