@@ -210,13 +210,13 @@ export default async function Home() {
       <section className="min-h-screen md:h-screen" style={{ paddingTop: 'clamp(100px, 12vw, 120px)', paddingBottom: 'clamp(40px, 8vw, 80px)', paddingLeft: '40px', paddingRight: '40px', backgroundColor: '#F5F5F5' }}>
         <div style={{ marginBottom: 'clamp(24px, 5vw, 48px)' }}>
           <h2
+            className="mb-4 md:mb-3"
             style={{
               fontFamily: 'din-2014, sans-serif',
               fontSize: 'clamp(44px, 8vw, 80px)',
               lineHeight: 0.95,
               fontWeight: 700,
               color: '#2B4C7E',
-              marginBottom: '4px',
               letterSpacing: '-0.03em',
               hyphens: 'none',
               wordBreak: 'keep-all',
