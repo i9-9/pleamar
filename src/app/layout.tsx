@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: "32 años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.",
     images: [
       {
-        url: "/images/v2/hero_2.jpeg",
+        url: "/images/seo/og-default.png",
         width: 1200,
         height: 630,
         alt: "Agencia Pleamar - Servicios de Comercio Exterior"
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima",
     description: "32 años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.",
-    images: ["/images/v2/hero_2.jpeg"]
+    images: ["/images/seo/og-default.png"]
   },
   robots: {
     index: true,

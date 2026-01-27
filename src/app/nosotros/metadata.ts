@@ -19,12 +19,18 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/nosotros-01.jpg",
+        url: "/images/seo/og-default.png",
         width: 1200,
         height: 630,
         alt: "Agencia Pleamar - Nosotros"
       }
     ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sobre Agencia Pleamar SA - 32 Años de Experiencia",
+    description: "Desde 1993 facilitamos el comercio exterior en Argentina con presencia nacional y atención personalizada.",
+    images: ["/images/seo/og-default.png"]
   },
   alternates: {
     canonical: "https://agenciapleamar.com/nosotros"

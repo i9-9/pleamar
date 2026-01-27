@@ -22,12 +22,18 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/v2/agencia_maritima.jpg",
+        url: "/images/seo/og-default.png",
         width: 1200,
         height: 630,
         alt: "Servicios de Agencia Marítima - Pleamar"
       }
     ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Servicios de Comercio Exterior - Agencia Pleamar SA",
+    description: "Agencia marítima, despacho de aduana, estibaje y servicios integrales de comercio exterior en Argentina.",
+    images: ["/images/seo/og-default.png"]
   },
   alternates: {
     canonical: "https://agenciapleamar.com/servicios"

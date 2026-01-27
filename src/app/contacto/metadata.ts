@@ -15,7 +15,21 @@ export const metadata: Metadata = {
     title: "Contacto - Agencia Pleamar SA",
     description: "Contactanos para consultas sobre comercio exterior, agencia marítima y despacho de aduana. Respuesta rápida y atención personalizada.",
     url: "https://agenciapleamar.com/contacto",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/images/seo/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "Contacto - Agencia Pleamar"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contacto - Agencia Pleamar SA",
+    description: "Contactanos para consultas sobre comercio exterior, agencia marítima y despacho de aduana. Respuesta rápida y atención personalizada.",
+    images: ["/images/seo/og-default.png"]
   },
   alternates: {
     canonical: "https://agenciapleamar.com/contacto"
