@@ -3,9 +3,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ClientAnimations from '@/components/ClientAnimations';
+import { getYearsOfExperience } from '@/lib/company';
 import { useState } from 'react';
 
 export default function Contacto() {
+  const yearsOfExperience = getYearsOfExperience();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,7 +80,7 @@ export default function Contacto() {
               className="text-lg lg:text-xl"
               style={{ fontFamily: 'helvetica-neue, Helvetica Neue, Helvetica, Arial, sans-serif', color: '#364B72' }}
             >
-              +32 años de experiencia en comercio exterior nos respaldan.
+              +{yearsOfExperience} años de experiencia en comercio exterior nos respaldan.
             </p>
           </div>
 

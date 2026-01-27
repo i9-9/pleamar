@@ -1,10 +1,12 @@
 // Datos extraídos de https://agenciapleamar.com/
 
+import { COMPANY } from '@/lib/company';
+
 export const siteData = {
   // Información de la empresa
   company: {
-    name: "Agencia Pleamar SA",
-    foundedYear: 1993,
+    name: COMPANY.NAME,
+    foundedYear: COMPANY.FOUNDING_YEAR,
     slogan: "Excelencia & Seriedad",
     headquarters: "Necochea",
     representatives: [

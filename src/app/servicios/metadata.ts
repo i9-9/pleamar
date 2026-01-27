@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
+import { getYearsOfExperience } from '@/lib/company';
+
+const yearsOfExperience = getYearsOfExperience();
 
 export const metadata: Metadata = {
   title: "Servicios de Comercio Exterior - Agencia Marítima y Despacho de Aduana",
-  description: "Servicios integrales de comercio exterior: agencia marítima, despacho de aduana, estibaje, transporte marítimo y gestión aduanera en Argentina. 32 años de experiencia.",
+  description: `Servicios integrales de comercio exterior: agencia marítima, despacho de aduana, estibaje, transporte marítimo y gestión aduanera en Argentina. ${yearsOfExperience} años de experiencia.`,
   keywords: [
     "servicios de comercio exterior",
     "agencia marítima Argentina",

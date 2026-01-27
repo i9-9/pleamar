@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
+import { getYearsOfExperience } from '@/lib/company';
+
+const yearsOfExperience = getYearsOfExperience();
 
 export const metadata: Metadata = {
-  title: "Sobre Nosotros - 32 Años de Experiencia en Comercio Exterior",
+  title: `Sobre Nosotros - ${yearsOfExperience} Años de Experiencia en Comercio Exterior`,
   description: "Desde 1993 facilitamos el comercio exterior en Argentina. Presencia en Necochea, Quequén, Buenos Aires, Bahía Blanca, Mar del Plata y más ciudades. Conocé nuestra trayectoria.",
   keywords: [
     "agencia marítima Necochea",
@@ -13,7 +16,7 @@ export const metadata: Metadata = {
     "empresa comercio exterior"
   ],
   openGraph: {
-    title: "Sobre Agencia Pleamar SA - 32 Años de Experiencia",
+    title: `Sobre Agencia Pleamar SA - ${yearsOfExperience} Años de Experiencia`,
     description: "Desde 1993 facilitamos el comercio exterior en Argentina con presencia nacional y atención personalizada.",
     url: "https://agenciapleamar.com/nosotros",
     type: "website",
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sobre Agencia Pleamar SA - 32 Años de Experiencia",
+    title: `Sobre Agencia Pleamar SA - ${yearsOfExperience} Años de Experiencia`,
     description: "Desde 1993 facilitamos el comercio exterior en Argentina con presencia nacional y atención personalizada.",
     images: ["/images/seo/og-default.png"]
   },

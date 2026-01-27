@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getYearsOfExperience } from "@/lib/company";
+
+const yearsOfExperience = getYearsOfExperience();
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://agenciapleamar.com'),
@@ -7,7 +10,7 @@ export const metadata: Metadata = {
     default: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima en Argentina",
     template: "%s | Agencia Pleamar SA"
   },
-  description: "Agencia marítima y despacho de aduana con 32 años de experiencia. Servicios integrales de comercio exterior en Necochea, Quequén, Buenos Aires y toda Argentina.",
+  description: `Agencia marítima y despacho de aduana con ${yearsOfExperience} años de experiencia. Servicios integrales de comercio exterior en Necochea, Quequén, Buenos Aires y toda Argentina.`,
   keywords: [
     "agencia marítima",
     "despacho de aduana",
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
     url: "https://agenciapleamar.com",
     siteName: "Agencia Pleamar SA",
     title: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima",
-    description: "32 años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.",
+    description: `${yearsOfExperience} años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.`,
     images: [
       {
         url: "/images/seo/og-default.png",
@@ -52,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Agencia Pleamar SA - Comercio Exterior y Agencia Marítima",
-    description: "32 años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.",
+    description: `${yearsOfExperience} años de experiencia en comercio exterior. Agencia marítima, despacho de aduana y servicios integrales en Argentina.`,
     images: ["/images/seo/og-default.png"]
   },
   robots: {
@@ -99,7 +102,7 @@ export default function RootLayout({
       "width": 200,
       "height": 50
     },
-    "description": "Agencia marítima y despacho de aduana con 32 años de experiencia en comercio exterior",
+    "description": `Agencia marítima y despacho de aduana con ${yearsOfExperience} años de experiencia en comercio exterior`,
     "foundingDate": "1993",
     "slogan": "Soluciones marítimas y portuarias integrales",
     "email": "operaciones@pleamar.com.ar",

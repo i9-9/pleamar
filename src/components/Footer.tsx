@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <footer style={{ backgroundColor: '#F0F0F0', padding: '40px' }}>
       {/* Main Footer Content - White box */}
@@ -188,7 +189,7 @@ export default function Footer() {
             color: '#999',
             textAlign: 'center',
           }}>
-            Copyright 2025 Agencia Pleamar
+            Copyright {currentYear} Agencia Pleamar
           </p>
         </div>
       </div>
